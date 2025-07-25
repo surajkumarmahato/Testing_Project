@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="8" passed="8" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-07-26T03:49:34 IST" name="Default suite" finished-at="2025-07-26T03:51:34 IST" duration-ms="120054">
+    <groups>
+    </groups>
+    <test started-at="2025-07-26T03:49:34 IST" name="Default test" finished-at="2025-07-26T03:51:34 IST" duration-ms="120054">
+      <class name="com.AsianPaints.tests.TC_AsianPaints">
+        <test-method is-config="true" signature="startReport()[pri:0, instance:com.AsianPaints.tests.TC_AsianPaints@3ad83a66]" started-at="2025-07-26T03:49:33 IST" name="startReport" finished-at="2025-07-26T03:49:34 IST" duration-ms="329" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startReport -->
+        <test-method signature="Calc_Budget_Paint_Int(java.lang.String)[pri:0, instance:com.AsianPaints.tests.TC_AsianPaints@3ad83a66]" started-at="2025-07-26T03:49:35 IST" name="Calc_Budget_Paint_Int" data-provider="AreaDatas" finished-at="2025-07-26T03:49:51 IST" duration-ms="16221" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[1200]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Calc_Budget_Paint_Int -->
+        <test-method signature="Calc_Budget_Paint_Int(java.lang.String)[pri:0, instance:com.AsianPaints.tests.TC_AsianPaints@3ad83a66]" started-at="2025-07-26T03:49:51 IST" name="Calc_Budget_Paint_Int" data-provider="AreaDatas" finished-at="2025-07-26T03:50:03 IST" duration-ms="11895" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[1500]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Calc_Budget_Paint_Int -->
+        <test-method signature="Calc_Budget_Paint_Int(java.lang.String)[pri:0, instance:com.AsianPaints.tests.TC_AsianPaints@3ad83a66]" started-at="2025-07-26T03:50:03 IST" name="Calc_Budget_Paint_Int" data-provider="AreaDatas" finished-at="2025-07-26T03:50:15 IST" duration-ms="12463" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[11]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Calc_Budget_Paint_Int -->
+        <test-method signature="Calc_WaterProofing(java.lang.String)[pri:0, instance:com.AsianPaints.tests.TC_AsianPaints@3ad83a66]" started-at="2025-07-26T03:50:16 IST" name="Calc_WaterProofing" data-provider="WaterAreaDatas" finished-at="2025-07-26T03:50:36 IST" duration-ms="20601" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[1500]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Calc_WaterProofing -->
+        <test-method signature="Calc_WaterProofing(java.lang.String)[pri:0, instance:com.AsianPaints.tests.TC_AsianPaints@3ad83a66]" started-at="2025-07-26T03:50:36 IST" name="Calc_WaterProofing" data-provider="WaterAreaDatas" finished-at="2025-07-26T03:50:54 IST" duration-ms="17542" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[2000]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Calc_WaterProofing -->
+        <test-method signature="Calc_WaterProofing(java.lang.String)[pri:0, instance:com.AsianPaints.tests.TC_AsianPaints@3ad83a66]" started-at="2025-07-26T03:50:54 IST" name="Calc_WaterProofing" data-provider="WaterAreaDatas" finished-at="2025-07-26T03:51:09 IST" duration-ms="14998" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[11]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Calc_WaterProofing -->
+        <test-method signature="Find_Contractor(java.lang.String)[pri:0, instance:com.AsianPaints.tests.TC_AsianPaints@3ad83a66]" started-at="2025-07-26T03:51:09 IST" name="Find_Contractor" data-provider="PinCodeDatas" finished-at="2025-07-26T03:51:20 IST" duration-ms="11559" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[751030]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Find_Contractor -->
+        <test-method signature="Find_Contractor(java.lang.String)[pri:0, instance:com.AsianPaints.tests.TC_AsianPaints@3ad83a66]" started-at="2025-07-26T03:51:20 IST" name="Find_Contractor" data-provider="PinCodeDatas" finished-at="2025-07-26T03:51:34 IST" duration-ms="13463" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[500084]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Find_Contractor -->
+        <test-method is-config="true" signature="endReport()[pri:0, instance:com.AsianPaints.tests.TC_AsianPaints@3ad83a66]" started-at="2025-07-26T03:51:34 IST" name="endReport" finished-at="2025-07-26T03:51:34 IST" duration-ms="598" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- endReport -->
+      </class> <!-- com.AsianPaints.tests.TC_AsianPaints -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
