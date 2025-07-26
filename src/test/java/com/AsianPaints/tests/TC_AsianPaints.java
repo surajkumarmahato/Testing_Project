@@ -30,7 +30,7 @@ public class TC_AsianPaints
     {
         extent = new ExtentReports();
         String reportPath = projectpath + "\\Reports\\TC_AP_Suraj_1.html";
-        new File(projectpath + "\\Reports\\Screenshots").mkdirs(); // Ensure folders exist
+        new File(projectpath + "\\Reports\\Screenshots").mkdirs();
         spark = new ExtentSparkReporter(reportPath);
         extent.attachReporter(spark);
     }

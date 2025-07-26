@@ -31,7 +31,6 @@ public class Pages_AsianPaints
     By FreshClick = By.id("fresh-painting-wp");
     By WaterArea = By.id("area");
     By WaterSubmit = By.id("calculate-now");
-//    By PaintOutput = By.className("main-card-1 result-card ");
 
     // Test Case 1
     
@@ -66,19 +65,6 @@ public class Pages_AsianPaints
     {
         driver.findElement(calculateBtn).click();
     }
-    
-//    public boolean CheckPaintResult()
-//    {
-//    	WebElement result = driver.findElement(PaintOutput);
-//    	if(result.isDisplayed())
-//    	{
-//    		return true;
-//    	}
-//    	else
-//    	{
-//    		return false;
-//    	}
-//    }
 
     // Test Case 2
     
