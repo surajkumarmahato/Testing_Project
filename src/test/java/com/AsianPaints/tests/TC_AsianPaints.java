@@ -1,20 +1,15 @@
 package com.AsianPaints.tests;
 
 import com.AsianPaints.pages.Pages_AsianPaints;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.AsianPaints.utilities.ExcelUtil;
 import org.apache.commons.io.FileUtils;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-
 import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 import java.util.Properties;
 
@@ -29,12 +24,11 @@ public class TC_AsianPaints
     public void startReport() 
     {
         extent = new ExtentReports();
-        String reportPath = projectpath + "\\Reports\\TC_AP_Suraj_1.html";
-        new File(projectpath + "\\Reports\\Screenshots").mkdirs();
+        String reportPath = projectpath + "/Reports/TC_AP_Suraj_1.html";
+        new File(projectpath + "/Reports/Screenshots").mkdirs();
         spark = new ExtentSparkReporter(reportPath);
         extent.attachReporter(spark);
     }
-
 
     //After Suite
     @AfterSuite
@@ -48,8 +42,7 @@ public class TC_AsianPaints
     public void Calc_Budget_Paint_Int(String AreaVal) throws IOException 
     {
         ExtentTest test = extent.createTest("Paint Budget | Area: " + AreaVal);
-
-        WebDriver driver = setupDriver(test);
+        WebDriver driver = setupDriver();
         try 
         {
             Properties prob = loadProperties();
@@ -91,8 +84,7 @@ public class TC_AsianPaints
     public void Calc_WaterProofing(String WaterAreaVal) throws IOException, InterruptedException 
     {
         ExtentTest test = extent.createTest("Waterproof Budget | Area: " + WaterAreaVal);
-
-        WebDriver driver = setupDriver(test);
+        WebDriver driver = setupDriver();
         try 
         {
             Properties prob = loadProperties();
@@ -119,7 +111,8 @@ public class TC_AsianPaints
             {
                 throw new Exception("Waterproofing result not visible.");
             }
-        } catch (Exception e) 
+        } 
+        catch (Exception e) 
         {
             captureFailure(driver, test, e.getMessage());
         } 
@@ -129,14 +122,12 @@ public class TC_AsianPaints
         }
     }
 
-    
     //Find Contractor By Pincode
     @Test(dataProvider = "PinCodeDatas")
     public void Find_Contractor(String EntPin) throws IOException, InterruptedException 
     {
         ExtentTest test = extent.createTest("Contractor Lookup | Pin: " + EntPin);
-
-        WebDriver driver = setupDriver(test);
+        WebDriver driver = setupDriver();
         try 
         {
             Properties prob = loadProperties();
@@ -170,19 +161,20 @@ public class TC_AsianPaints
         }
     }
 
-    // Setup & Utility Methods
-    private WebDriver setupDriver(ExtentTest test) 
-    {
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    // --------- Utilities ---------
+
+    private WebDriver setupDriver() {
+        // Use your base class or create driver here
+        io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
+        WebDriver driver = new org.openqa.selenium.chrome.ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(10));
         return driver;
     }
 
     private Properties loadProperties() throws IOException 
     {
         Properties prob = new Properties();
-        FileInputStream fs2 = new FileInputStream(projectpath + "\\Data\\CalcBudgetPage.properties");
+        FileInputStream fs2 = new FileInputStream(projectpath + "/Data/CalcBudgetPage.properties");
         prob.load(fs2);
         return prob;
     }
@@ -198,8 +190,7 @@ public class TC_AsianPaints
                 cookieClose.click();
             }
         } 
-        catch (NoSuchElementException ignored) 
-        {}
+        catch (NoSuchElementException ignored) {}
         handleSplash(driver);
     }
 
@@ -214,9 +205,7 @@ public class TC_AsianPaints
                 splashClose.click();
             }
         } 
-        catch (NoSuchElementException ignored) 
-        {
-        }
+        catch (NoSuchElementException ignored) {}
     }
 
     //Capture ScreenShot
@@ -238,39 +227,23 @@ public class TC_AsianPaints
         }
     }
 
-    // Data for Int Painting
+    // Data Providers -------------------------
+
     @DataProvider
     public String[] AreaDatas() throws IOException 
     {
-        return readExcelColumn(0, 0);
+        return ExcelUtil.readColumn(projectpath + "/data/AsianPaintsData.xlsx", 0, 0);
     }
 
-    // Data for Waterpoofing
     @DataProvider
     public String[] WaterAreaDatas() throws IOException 
     {
-        return readExcelColumn(1, 0);
+        return ExcelUtil.readColumn(projectpath + "/data/AsianPaintsData.xlsx", 1, 0);
     }
 
-    // Data for Contractors
     @DataProvider
     public String[] PinCodeDatas() throws IOException 
     {
-        return readExcelColumn(2, 0);
-    }
-
-    private String[] readExcelColumn(int sheetIndex, int colIndex) throws IOException 
-    {
-        FileInputStream fs = new FileInputStream(new File(projectpath + "\\data\\AsianPaintsData.xlsx"));
-        XSSFWorkbook workbook = new XSSFWorkbook(fs);
-        XSSFSheet sheet = workbook.getSheetAt(sheetIndex);
-        int rows = sheet.getPhysicalNumberOfRows();
-        String[] data = new String[rows];
-        for (int i = 0; i < rows; i++) 
-        {
-            data[i] = Integer.toString((int) (sheet.getRow(i).getCell(colIndex).getNumericCellValue()));
-        }
-        workbook.close();
-        return data;
+        return ExcelUtil.readColumn(projectpath + "/data/AsianPaintsData.xlsx", 2, 0);
     }
 }
