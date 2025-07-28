@@ -53,6 +53,8 @@ public class TC_1_IntPaintBudget
         if (driver != null) driver.quit();
     }
 
+    
+    //Test Case 1 : To Check Browser is Opening or Not
     @Test(priority = 1)
     public void OpenBrowser() {
         ExtentTest test = extent.createTest("Browser is Opening or Not");
@@ -68,6 +70,7 @@ public class TC_1_IntPaintBudget
         }
     }
 
+    //Test Case 2 : To Check Hover is Working or Not
     @Test(priority = 2)
     public void Check_Hover() {
         ExtentTest test = extent.createTest("Checking Hover is Working or Not");
@@ -85,6 +88,7 @@ public class TC_1_IntPaintBudget
         }
     }
 
+    //Test Case 3 : To Check Paint Section is Opening/Not
     @Test(priority = 3)
     public void Check_PaintSection() {
         ExtentTest test = extent.createTest("Paint Section is Opening/Not");
@@ -104,6 +108,9 @@ public class TC_1_IntPaintBudget
         }
     }
 
+    
+    
+    //Test Case 3 : To Check Calc. of Paint Budget
     @Test(dataProvider = "AreaDatas", priority = 4)
     public void Calc_Budget_Paint_Int(String AreaVal) {
         ExtentTest test = extent.createTest("Calc Paint Budget | Area: " + AreaVal);
@@ -158,7 +165,7 @@ public class TC_1_IntPaintBudget
         }
     }
 
-    // Data Provider
+    // Data Provider for Budget Section
     @DataProvider
     public String[] AreaDatas() throws IOException {
         return ExcelUtil.readColumn(projectpath + "/data/AsianPaintsData.xlsx", 0, 0);
