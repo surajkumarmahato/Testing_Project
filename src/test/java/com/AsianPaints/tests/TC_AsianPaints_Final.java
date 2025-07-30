@@ -25,7 +25,7 @@ public class TC_AsianPaints_Final {
     @BeforeSuite
     public void startReport() {
         extent = new ExtentReports();
-        String reportPath = projectpath + "/Reports/TC_AP_Project Final Report.html";
+        String reportPath = projectpath + "/Reports/TC_AP_Project_Final.html";
         new File(projectpath + "/Reports/Screenshots").mkdirs();
         spark = new ExtentSparkReporter(reportPath);
         extent.attachReporter(spark);
@@ -57,7 +57,8 @@ public class TC_AsianPaints_Final {
     public void OpenBrowser() {
         ExtentTest test = extent.createTest("Browser is Opening or Not");
         try {
-            WebElement result = driver.findElement(By.xpath("/html/body/div[3]/div/div[1]/div/div/header/div[3]/div[1]/a/picture/img"));
+        	Thread.sleep(2000);
+            WebElement result = driver.findElement(By.xpath("/html/body/div[3]/div/div[1]/div/div/header/div[2]/div[5]/div[1]"));
             if (result.isDisplayed()) {
                 test.pass("Browser is Opening Successfully.");
             } else {
@@ -73,9 +74,10 @@ public class TC_AsianPaints_Final {
     public void Check_Hover() {
         ExtentTest test = extent.createTest("Checking Hover is Working or Not");
         try {
+        	Thread.sleep(2000);
             Pages_AsianPaints page = new Pages_AsianPaints(driver);
             page.hoverOverProducts();
-            WebElement result = driver.findElement(By.xpath("/html/body/div[3]/div/div[1]/div/div/header/div[4]/nav/ul/li[2]/ul/li[1]/ul/span"));
+            WebElement result = driver.findElement(By.xpath("/html/body/div[3]/div/div[1]/div/div/header/div[3]/nav/ul[2]/li[2]/ul/li[1]/ul/li[1]/a"));
             if (result.isDisplayed()) {
                 test.pass("Hover is Working.");
             } else {
@@ -94,6 +96,7 @@ public class TC_AsianPaints_Final {
             Pages_AsianPaints page = new Pages_AsianPaints(driver);
             page.hoverOverProducts();
             page.clickInteriorWallPaints();
+        	Thread.sleep(2000);
             handleSplash();
             WebElement result = driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[1]/div/div[1]/div/div[1]/div[1]/div[1]"));
             if (result.isDisplayed()) {
@@ -167,6 +170,7 @@ public class TC_AsianPaints_Final {
             page.EnterWaterArea(WaterAreaVal);
             page.Water_Sumbit();
             handleSplash();
+            Thread.sleep(3000);
             WebElement result = driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[1]/div/div[1]/div[1]/div[2]/div[1]/div[2]"));
             if (result.isDisplayed()) {
                 test.pass("WaterProofing displayed successfully for area " + WaterAreaVal);
@@ -184,8 +188,11 @@ public class TC_AsianPaints_Final {
         ExtentTest test = extent.createTest("Checking Find Contractor Page is Opening or Not");
         try {
             Pages_AsianPaints page = new Pages_AsianPaints(driver);
+            page.hoverOverMore();
             page.clickFindContractor();
             handleSplash();
+            Thread.sleep(3000);
+
             WebElement result = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[2]/div/div[4]/div/div/p[1]/span/span"));
             if (result.isDisplayed()) {
                 test.pass("Find Contractor Page is Opening.");
@@ -203,11 +210,13 @@ public class TC_AsianPaints_Final {
         ExtentTest test = extent.createTest("Contractor Lookup | Pin: " + EntPin);
         try {
             Pages_AsianPaints page = new Pages_AsianPaints(driver);
+            page.hoverOverMore();
             page.clickFindContractor();
             handleSplash();
             page.EnterPinCode(EntPin);
             page.clickEnterButton();
             handleSplash();
+            Thread.sleep(3000);
 
             WebElement result = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[2]/div/div[2]/div/div[1]/h2"));
             if (result.isDisplayed()) {
@@ -216,6 +225,94 @@ public class TC_AsianPaints_Final {
                 throw new Exception("No contractors found.");
             }
         } catch (Exception e) {
+            captureFailure(test, e.getMessage());
+        }
+    }
+
+    // Bhavana
+    //TestCase 9 : Login
+    @Test(priority = 9)
+    public void testLogin() {
+        ExtentTest test = extent.createTest("Asian Paints - Login Test");
+        try {
+            Pages_AsianPaints page = new Pages_AsianPaints(driver);
+            String phone = prob.getProperty("phone");
+            page.login(phone);
+            Thread.sleep(3000);
+            handleSplash();
+
+             WebElement successMsg = driver.findElement(By.xpath("/html/body/div[3]/div/div[1]/div/div/header/div[2]/div[1]/a/picture/img"));
+             if (successMsg.isDisplayed()){
+            	 test.pass("Login Page Successful");
+             }
+             else {
+                 throw new Exception("Login Page Un-successful");
+             }
+        	} 
+        catch (Exception e) {
+            captureFailure(test, e.getMessage());
+        }
+    }
+    
+//    @Test
+//    public void testAddToCart() throws InterruptedException {
+//        ExtentTest test = extent.createTest("Asian Paints - Add to Cart Test");
+//
+//        productPage = new ProductPage(driver, wait);
+//        productPage.addToCart();
+//        test.info("Go to shop");
+//        test.info("Click on DIY tools");
+//        test.info("Select the item");
+//        test.info("Click on Add to Cart");
+//        test.pass("Product added to cart successfully");
+//    }
+
+//    @Test
+//    public void testAddAddress() {
+//        ExtentTest test = extent.createTest("Asian Paints - Add Address Test");
+//
+//        try {
+//            addressPage = new AddressPage(driver, wait);
+//            addressPage.addAddress();
+//            
+//            test.info("Go to cart");
+//            test.info("Click on checkout");
+//            test.info("Select Address");
+//            test.info("Fill the address");
+//            
+//            test.pass("Address added successfully");
+//
+//        } catch (Exception e) {
+//            // Capture failure details in report
+//            test.fail("Failed to add address: " + e.getMessage());
+//            e.printStackTrace();
+//           
+//        }
+//    }
+    
+    @Test(priority = 10)
+    public void testLogout() {
+        ExtentTest test = extent.createTest("Asian Paints - Logout Test");
+        try {
+            Pages_AsianPaints page = new Pages_AsianPaints(driver);
+            String phone = prob.getProperty("phone");
+            page.login(phone);
+            Thread.sleep(3000);
+            page.clickProfileButton();
+            page.clickSignoutButton();
+            Thread.sleep(3000);
+            handleSplash();
+
+            
+             WebElement successMsg = driver.findElement(By.xpath("/html/body/div[3]/div/div[3]/div/div[1]/div/div[2]/div/div/div[2]/h2"));
+             if (successMsg.isDisplayed()){
+            	 test.pass("Logout Page Successful");
+             }
+             else {
+                 throw new Exception("Logout Page Un-successful");
+             }
+        	} 
+        catch (Exception e) {
             captureFailure(test, e.getMessage());
         }
     }
